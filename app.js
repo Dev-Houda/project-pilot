@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 require("dotenv").config();
 
+const clientRoutes = require("./routes/clientRoutes");
+const projectRoutes = require("./routes/projectRoutes");
+const taskRoutes = require("./routes/taskRoutes");
+
 const app = express();
 
 mongoose
@@ -19,3 +23,8 @@ app.use(morgan("dev"));
 app.get("/", (req, res) => {
   res.send("Welcome to Projectpilot!");
 });
+
+// routes
+app.use("/clients", clientRoutes);
+app.use("/projects", projectRoutes);
+app.use("/tasks", taskRoutes);
